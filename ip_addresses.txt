@@ -1,34 +1,34 @@
-OnePlus-8                   192.168.0.139
-EB228-10524                 192.168.0.128
-EB228-EE10900               192.168.0.170
-its-12-30-38                192.168.0.113
-bryjr-Precision-3650-Tower  192.168.0.156
-ELO-arch                    192.168.0.116
-Pixel-6-Pro                 192.168.0.125
-Ovaltine                    192.168.0.146	
-EB228-EE10901	            192.168.0.199   self
-DESKTOP-16GR9NC	            192.168.0.142
-android-874ca30843991bd3	192.168.0.177
-EB228-EE11708	            192.168.0.112
-R7800	                    192.168.0.144
-EB228-EE11748               192.168.0.197
-Alfor	                    192.168.0.158
-sss	                        192.168.0.110
-EB228-EE10961	            192.168.0.162
-raspberrypi	                192.168.0.159	
-raspberrypi	                192.168.0.163
-EB228-EE10940	            192.168.0.157
-bbceaspi	                192.168.0.164
+OnePlus-8                   192.168.0.139 - unreachable
+EB228-10524                 192.168.0.128 - ping failed
+EB228-EE10900               192.168.0.170 - ping failed
+its-12-30-38                192.168.0.113 - reached
+bryjr-Precision-3650-Tower  192.168.0.156 - reached
+ELO-arch                    192.168.0.116 - host unreachable
+Pixel-6-Pro                 192.168.0.125 - host unreachable
+Ovaltine                    192.168.0.146 - host unreachable
+EB228-EE10901	            192.168.0.199 - reached  self
+DESKTOP-16GR9NC	            192.168.0.142 - ping failed
+android-874ca30843991bd3	192.168.0.177 - reached
+EB228-EE11708	            192.168.0.112 - reached
+R7800	                    192.168.0.144 - ping failed
+EB228-EE11748               192.168.0.197 - ping failed
+Alfor	                    192.168.0.158 - reached
+sss	                        192.168.0.110 - reached
+EB228-EE10961	            192.168.0.162 - reached  3
+raspberrypi	                192.168.0.159 - reached
+raspberrypi	                192.168.0.163 - reached
+EB228-EE10940	            192.168.0.157 - reached
+bbceaspi	                192.168.0.164 - reached
 ---
-shellyrgbw2-DDD5B8	        192.168.0.160
-shellyrgbw2-DDC6A0	        192.168.0.138	
-shellyrgbw2-DE34E2	        192.168.0.106
-shellyrgbw2-DDC4B9	        192.168.0.161
-Google-Home-Mini	        192.168.0.136
-bbceaspi	                192.168.0.168
-ecb5fa8326e9	            192.168.0.141
-octopi	                    192.168.0.111
---	                        192.168.0.109
-homeassistant	            192.168.0.166	
-Linksys00779	            192.168.0.172
-TL-POE-SWITCH-1	            192.168.0.105
+shellyrgbw2-DDD5B8	        192.168.0.160 - reached
+shellyrgbw2-DDC6A0	        192.168.0.138 - reached
+shellyrgbw2-DE34E2	        192.168.0.106 - reached
+shellyrgbw2-DDC4B9	        192.168.0.161 - reached
+Google-Home-Mini	        192.168.0.136 - reached
+bbceaspi	                192.168.0.168 - reached
+ecb5fa8326e9	            192.168.0.141 - reached
+octopi	                    192.168.0.111 - reached
+--	                        192.168.0.109 - reached
+homeassistant	            192.168.0.166 - reached
+Linksys00779	            192.168.0.172 - reached
+TL-POE-SWITCH-1	            192.168.0.105 - reached

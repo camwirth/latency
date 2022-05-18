@@ -1,12 +1,13 @@
 
-import tkinter
 import re
 import subprocess
 import argparse
 import pandas as pd
 
 #collected different IP addresses from within the NET Lab
-ip_addresses = ['192.168.0.128', '192.168.0.170', '192.168.0.112', '192.168.0.197', '192.168.0.162']
+ip_addresses = ['192.168.0.160', '192.168.0.138', '192.168.0.106', '192.168.0.161']
+
+#ip_addresses = ['192.168.0.128', '192.168.0.170', '192.168.0.112', '192.168.0.197', '192.168.0.162']
 
 #from command line determine how much data will be collected
 parser = argparse.ArgumentParser()
@@ -49,7 +50,7 @@ def get_ping_data(host):
 function: total_data
 summary: creates a dataframe combining latency data from all IP addresses
 parameters: list of IP addresses (ip_addresses)
-returns: dataframe of all latency data 
+returns: dataframe of all latency data
 '''
 def total_data(ip_addresses):
     #create a dictionary with data lists from each IP address 
@@ -71,27 +72,8 @@ returns: none
 '''
 def __main__ ():
     latency_df = total_data(ip_addresses)
-    latency_df.to_csv('latencyData1.csv', index=False)
+    latency_df.to_csv('latencyData_shellyrgbw2.csv', index=False)
 
 
 #call main function
 __main__()
-
-
-
-'''
-latency_dict = {}
-for host in ip_addresses:
-    #create dictionary to create a dataframe
-    latency_dict[host] = get_ping_data(host)
-
-#if the ping fails - no data is collected, how can i add that to my data frame? 
-latency_df = pd.DataFrame(latency_dict)
-
-print(latency_df)
-
-latency_df.to_csv('latencyData.csv', index=False)
-
-
-#plot the histogram for the 
-'''
