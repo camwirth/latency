@@ -15,7 +15,7 @@ current_time = 0
 host = '192.168.0.100'
 done = False
 
-ofile = open('latencyData_ESP32-S2.csv', 'a+')
+ofile = open('latencyData_ESP32-S23.csv', 'a+')
 
 def getdata():
     ping_data = subprocess.Popen(['ping', '-c', '1', host], stdout=subprocess.PIPE)
@@ -34,7 +34,6 @@ while done is False:
     time.sleep(1)
 
     current_time += 1
-
 
 ofile.close()
 

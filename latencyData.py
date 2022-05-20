@@ -72,7 +72,7 @@ returns: none
 '''
 def __main__ ():
     latency_df = total_data(ip_addresses)
-    latency_df.to_csv('latencyData_shellyrgbw2.csv', index=False)
+    latency_df.to_csv('latencyData_ESP32-S2.csv', index=False)
 
 
 #call main function
