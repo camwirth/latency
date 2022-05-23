@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
 
-f = open('latencyData_ESP32-S2.csv','r')
+f = open('latencyData2_ESP32-S2.csv','r')
 data = f.read()
 data = data.split()
 latency_data = []
@@ -27,4 +27,4 @@ plt.savefig('ESP32-S2'+ '_combined.png', dpi=300, bbox_inches='tight')
 
 f.close()
 
-latency_ESP_df.to_csv('latencyData_ESP32-S2.csv', index=False)
+latency_ESP_df.to_csv('latencyData2_ESP32-S2.csv', index=False)

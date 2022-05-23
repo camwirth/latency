@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import matplotlib
 matplotlib.use('TkAgg')
 
-csv_files = ['latencyData.csv', 'latencyData1.csv', 'latencyData_shellyrgbw2.csv', 'latencyData_ESP32-S2.csv']
+csv_files = ['desktop_latencies.csv', 'raspberypi_latencies.csv', 'shellyrgbw2_latencies.csv', 'latencyData_ESP32-S2.csv', 'ESP32-S2-AP_latencies.csv']
 
 for file in csv_files:
     file_name = file.replace('.csv', '')
