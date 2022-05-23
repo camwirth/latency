@@ -26,7 +26,7 @@ def get_ping_data(ip_address):
     ping_data = re.findall('time=\d+.\d+', ping_data)
     for i in ping_data:
         latency_data.append(float(i.replace('time=', '')))
-    latency_data.sort()
+    #latency_data.sort()
     return latency_data
 
 #create dataframe of latency_data and write to a csv file 
