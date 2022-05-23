@@ -13,13 +13,13 @@ for file in csv_files:
     if file.find('ESP') != -1:
         latency_df.hist(bins=40)
         plt.tight_layout()
-        plt.savefig(file_name + '.png', dpi=300, bbox_inches='tight')
+        plt.savefig('./plots/' + file_name + '.png', dpi=300, bbox_inches='tight')
     else:
         latency_df.hist(bins=40)
         plt.tight_layout()
-        plt.savefig(file_name + '_separate.png', dpi=300, bbox_inches='tight')
+        plt.savefig('./plots/' + file_name + '_separate.png', dpi=300, bbox_inches='tight')
         latency_df.plot.hist(alpha=0.5)
         plt.tight_layout()
-        plt.savefig(file_name + '_combined.png', dpi=300, bbox_inches='tight')
+        plt.savefig('./plots/' + file_name + '_combined.png', dpi=300, bbox_inches='tight')
 
 
