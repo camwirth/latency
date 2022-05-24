@@ -3,6 +3,12 @@ import subprocess
 import argparse
 import pandas as pd
 
+file_name = 'ESP32-S2-STA_unsorted(1).csv'
+output_file_path = './netlab_data/csv_files/'
+
+with open('./netlab_data/file_names.txt', 'a') as file:
+    file.write(file_name + '\n')
+
 #ip address for Adafruit QT Py ESP32-S2
 ip_address = '192.168.0.100'
 
@@ -33,4 +39,4 @@ def get_ping_data(ip_address):
 latency_dict = {}
 latency_dict[ip_address] = get_ping_data(ip_address)
 latency_df = pd.DataFrame(latency_dict)
-latency_df.to_csv('ESP32-S2_latency_data_1.csv', index=False)
+latency_df.to_csv(output_file_path + file_name , index=False)
