@@ -1,18 +1,22 @@
 //need to improve start, stop, and collecting URL from the user
 //need to create an array to store latency data
-//store data in a downloadable blob in order to process and store data
+//store data in a downloadable blob
 
 function start(){
     run = true;
     pingURL();
+    latencyData = [];
 }
 
 function stop(){
     run = false;
+    document.getElementById("latencyData").innerHTML = latencyData;
 }
 
-var URL = window.prompt("Write a URL:", "http://google.com");
+var URL = "http://192.168.0.100/"
 var run;
+var latencyData = [];
+var i = 0;
 
 const myHeaders = new Headers({
     'Content-Type': 'application/json',
@@ -39,11 +43,13 @@ function pingURL(){
             const response = await fetch(URL)
             end = new Date().getTime();
             latency = end - start;
+            latencyData[i] = latency;
             document.getElementById("latency").innerHTML = latency
             setTimeout(() => {
                 getPing();
             }, 1000)
         }
+        i++;
             
     }
 }
