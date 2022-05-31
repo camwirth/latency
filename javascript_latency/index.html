@@ -8,24 +8,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content=
 		"width=device-width, initial-scale=1.0">
-	<script src="index.js"></script>
 	<script type="text/javascript" src=
 		"https://code.jquery.com/jquery-1.7.1.min.js">
 	</script>
+	<script src="new.js"></script>
+
 	<title>Ping a server using JavaScript</title>
 </head>
 
 <body>
     <h1>PINGING ESP32</h1>
-	
 	<button onclick="start()">Start</button>
 
-    <button onclick="stop()">Stop</button>
+	<button onclick="stop()">STOP AND RESET</button>
 
     <h5>Latency Measurement: </h5>
-    <p id="latency"></p><br>
-    <h5>Total Latency Data: </h5>
-    <p id="latencyData"></p>
+    <p id="latency"></p>
+
+	<h5>Time left to run (in Minutes) </h5>
+	<p id="timeleft"></p>
 
 </body>
 

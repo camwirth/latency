@@ -8,6 +8,10 @@
 const char* wifi_network_ssid = "NET Lab";
 const char* wifi_network_password = "enterthenetlab";
 
+//home ssid and password
+//const char* wifi_network_ssid = "BARON86";
+//const char* wifi_network_password = "1F34333C25C3E850";
+
 //ap ssid and password
 const char* soft_ap_ssid = "ESP32 AP";
 const char* soft_ap_password = "password";
