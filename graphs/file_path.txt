@@ -1,11 +1,1 @@
-/home/camillewirthlin/latency/python_latency/data/other/desktop.csv
-/home/camillewirthlin/latency/python_latency/data/other/raspberrypi.csv
-/home/camillewirthlin/latency/python_latency/data/other/shellyrgbw2.csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/ESP32_STA_home_py.csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/ESP32-S2-STA_sorted.csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/ESP32-S2-STA_sorted.csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/ESP32-S2-STA_unsorted.csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/ESP32-S2-STA_unsorted(1).csv
-/home/camillewirthlin/latency/python_latency/data/ESP32/newESP.csv
-/home/camillewirthlin/latency/javascript_latency/data/ESP32_STA_netlab_js.csv
-/home/camillewirthlin/latency/javascript_latency/data/ESP32_AP_netlab_js.csv
+/home/camillewirthlin/latency/javascript_latency/data/ESP32_rp_STA_ssh.csv
