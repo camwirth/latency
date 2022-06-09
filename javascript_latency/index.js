@@ -1,7 +1,10 @@
 //create variables 
 var save;                                       //if program has run through desired time
 latencyDataStr = "";                            //string to parse data into a csv file
-var URLtobepinged = "http://192.168.0.100/"     //ip address for ESP32-S2 netlab network
+
+var URLtobepinged = "https://dec1-76-27-100-138.ngrok.io/piapp/"
+//var URLtobepinged = "http://192.168.0.126/piapp/"
+//var URLtobepinged = "http://192.168.0.199/"     //ip address for ESP32-S2 netlab network
 //var URLtobepinged = "http://192.168.4.1"      //ip address for ESP32-S2 soft AP
 //ver URLtobepinged = "http://192.168."         //ip address for ESP32-S2 home network
 var run;                                        //tells program when to start/stop
@@ -41,6 +44,7 @@ function reset(){
 
 function stop(){
     run = false;
+    fileDownload()
     save = true;
 }
 
@@ -48,7 +52,7 @@ function stop(){
  * inputs/outputs: none
  * Summary: converts latencyData array to a downloaded csv file
  */
-function fileDownload(latencyData){
+function fileDownload(){
     //get a label for the df to describe the data
     graph_label = prompt("Enter the label for the data", "");
     latencyDataStr = graph_label + ", \n";
@@ -98,7 +102,7 @@ function pingURL(){
                 //program ran the entire given time
                 done = true;
                 stop();
-                fileDownload(latencyData);
+                //fileDownload(latencyData);
                 document.getElementById("timeleft").innerHTML = "done!";
             }
             else{
