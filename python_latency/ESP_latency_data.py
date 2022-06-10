@@ -1,3 +1,5 @@
+#a program that collects latency data for an ip address and saves to a certain file
+
 import re 
 import subprocess
 import argparse

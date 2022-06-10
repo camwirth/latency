@@ -1,3 +1,4 @@
+#a program that will collect ping data when given an ip address
 
 import re
 import subprocess
