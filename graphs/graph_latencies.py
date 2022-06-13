@@ -1,10 +1,7 @@
-import tkinter
 import argparse
 import pandas as pd
 from matplotlib import pyplot as plt
 import matplotlib
-matplotlib.use('TkAgg')
-
 
 def get_file_name(file):
     split_file = file.split('/')
@@ -37,11 +34,15 @@ for file in csv_files:
     df = pd.read_csv(file)
 
     #create and save histogram
-    df.hist(bins=40)
+    ax = df.hist(bins=40)
+    plt.xlabel("Time (ms)")
+    plt.ylabel("Frequency")
     plt.tight_layout()
     plt.savefig(output_file_path + file_name + '_hist.png', dpi=300, bbox_inches='tight')
 
     #create and save line graph
     df.plot.line()
+    plt.xlabel("Time (ms)")
+    plt.ylabel("Frequency")
     plt.tight_layout()
     plt.savefig(output_file_path + file_name + '_line.png', dpi=300, bbox_inches='tight')

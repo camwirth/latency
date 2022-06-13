@@ -1,3 +1,2 @@
 Write path to files you would like to graph below (one path on each line)
-/home/camillewirthlin/latency/javascript_latency/data/raspberrypi/ESP32_home_rp_server_1min.csv
 /home/camillewirthlin/latency/javascript_latency/data/raspberrypi/ESP32_home_rp_server_1hr.csv
