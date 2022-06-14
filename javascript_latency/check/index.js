@@ -1,9 +1,6 @@
 //is there a way to keep this repetative to gather data?
 //ideas/goals: iterate through this to gather certain data elements and find the accuracy 
-
-iterations = prompt("how many iterations?", "");
 var i = 0;
-
 function checkData(latencyData) {
     latencyData.sort();
     var img = document.createElement('img');
@@ -25,6 +22,8 @@ function checkData(latencyData) {
 function pingURL() {
     total = [];
     document.getElementById("local").innerHTML = "";
+    document.getElementById("IMAGE").innerHTML = "";
+
     console.log('start');
     var URLtobepinged = "http://192.168.0.199";
     //var URLtobepinged = "https://dec1-76-27-100-138.ngrok.io/piapp/";
