@@ -1,6 +1,7 @@
 programs that record latency using various methods
 
 --Directories--
+
 python_latency:
 - data: contains latency data collected by using python
 - ESP_latency_data: program designed specifically for collecting latency
@@ -35,6 +36,7 @@ check:
     to find threshold
 
 --Notes--
+
 Remote Access to ESP32 Using Raspberry Pi:
 - create Apache server 
 - run python flask behind Apache server
