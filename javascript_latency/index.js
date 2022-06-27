@@ -1,57 +1,47 @@
-//create variables 
-var save;                                       //if program has run through desired time
-latencyDataStr = "";                            //string to parse data into a csv file
 
-var URLtobepinged = "https://dec1-76-27-100-138.ngrok.io/piapp/"
-//var URLtobepinged = "http://192.168.0.126/piapp/"
-//var URLtobepinged = "http://192.168.0.199/"     //ip address for ESP32-S2 netlab network
-//var URLtobepinged = "http://192.168.4.1"      //ip address for ESP32-S2 soft AP
-//ver URLtobepinged = "http://192.168."         //ip address for ESP32-S2 home network
-var run;                                        //tells program when to start/stop
+var save;
+latencyDataStr = "";
+
+var URLtobepinged = "https://dec1-76-27-100-138.ngrok.io/piapp/";
+var run;
 var latencyData = [];
 var i = 0;
 
-const myHeaders = new Headers({                 //headers for fetch command
+const myHeaders = new Headers({
     'Content-Type': 'application/json',
-    //'Access-Control-Allow-Origin': '*'
 })
 
 //get time to run the program from the user
 timetorun = prompt("Enter the time (in minutes) you would like to ping", "")
 
-/**Function title: start
- * inputs/outputs: none
- * Summary: this function gets start time of program running, and begins to ping
- * the URL
- */
+//get start time of program running - begin to ping
 function start(){
     run = true;
     //get time to run program
     begin_time = new Date().getTime();
-    runtime = timetorun*60*1000 + begin_time;   //convert timetorun to ms
+    runtime = timetorun*60*1000 + begin_time;
     latencyData.setlength = 0;
     i = 0;
     pingURL();
 
 }
 
+//reset latency data and time
 function reset(){
-    latencyData = [];   //reset the latencyData array
+    latencyData = [];
     run = false;
     save = false;
     timetorun = prompt("Enter the time (in minutes) you would like to ping", "");
 }
 
+//stop program and download data
 function stop(){
     run = false;
     fileDownload()
     save = true;
 }
 
-/**Function title: fileDownload
- * inputs/outputs: none
- * Summary: converts latencyData array to a downloaded csv file
- */
+//converts latencyData array to a downloaded csv file
 function fileDownload(){
     //get a label for the df to describe the data
     graph_label = prompt("Enter the label for the data", "");
@@ -68,10 +58,7 @@ function fileDownload(){
     a.click();
 }
 
-/**Function title: pingURL
- * inputs/outputs: none 
- * Summary: creates getPing function and catches error
- */
+//sends GET request and records latency time
 function pingURL(){
 
     //set options for fetch command
@@ -88,11 +75,7 @@ function pingURL(){
         document.getElementById("latency").innerHTML = latency
     })
 
-    /**Function title: getPing
-     * inputs/outputs: none 
-     * Summary: sends a GET request to given url for a given ammount of time or until
-     * program is rest/stopped
-     */
+    //send GET request to given url for given time or until program is reset/stopped
     async function getPing(){
         //check if runtime has completed
         current_time = new Date().getTime();
