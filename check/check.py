@@ -47,6 +47,8 @@ def find_accuracy(response, LOCAL):
             #if response is false it is remote
             remote += 1
 
+    print(local)
+    print(remote)
     #retrun accuracy 
     if LOCAL is True:
         #if local return percentage of local responses
@@ -55,65 +57,65 @@ def find_accuracy(response, LOCAL):
         #if remote return precentage of remote responses
         return remote/len(response)
 
-#runs the tests and analyzes data 
-def run(file_path, local, threshold):
-
-    #create empty lists for data
-    min_response = []
-    avg_response = []
-    median_response = []
-    sample_data = []
+def get_data(file_path):
     data_list = []
-    done = True
-
-    #create list of data from csv file
     df = pd.read_csv(file_path)
     data = df.values.tolist()
     for i in data:
         data_list.append(i[0])
+    
+    return data_list
 
-    #if local data calcualte the threshold 
-    if local:
-        threshold = statistics.mean(data_list) + statistics.pstdev(data_list) * stdev_num
-        done = False
+def check_response(data, threshold, local):
+    min_response = []
+    avg_response = []
+    median_response = []
+    sample_data = []
 
-    #run through data and test groups size of user input
-    for i in range(len(data_list)):
-        sample_data.append(data_list[i])
+    for i in range(len(data)):
+        sample_data.append(data[i])
         if i % size == 0:
             min_response.append(min_method(sample_data, threshold))
             avg_response.append(avg_method(sample_data, threshold))
             median_response.append(median_method(sample_data, threshold))
             sample_data = []
-
+    
     min_accuracy = find_accuracy(min_response, local)
     avg_accuracy = find_accuracy(avg_response, local)
     median_accuracy = find_accuracy(median_response, local)
 
     #print useful information to terminal
     print("\n-INFORMATION ACCROSS ALL DATA-")
-    print("Average latency: " + str(statistics.mean(data_list)))
-    print("Median latency: " + str(statistics.median(data_list)))
-    print("Standard deviation: " + str(statistics.pstdev(data_list)))
+    print("Average latency: " + str(statistics.mean(data)))
+    print("Median latency: " + str(statistics.median(data)))
+    print("Standard deviation: " + str(statistics.pstdev(data)))
     print("Threshold: " + str(threshold))
-    print("Minimum latency is: " + str(min(data_list)))
-    print("Maximum latency is: " + str(max(data_list)))
-    print("\n-ACCURACY OF CHECK-")
+    print("Minimum latency is: " + str(min(data)))
+    print("Maximum latency is: " + str(max(data)))
+    print("\n-ACCURACY-")
     print("Accuracy using min method: " + str(min_accuracy*100) + "%")
     print("Accuracy using avg method: " + str(avg_accuracy*100) + "%")
     print("Accuracy using median method: " + str(median_accuracy*100) + "%\n")
 
-    #run the remote data files
-    if not done:
-        print("\n---NGROK---")
-        run('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_bridge_netlab_2hrs.csv', False, threshold)
-        print("\n---VPN---")
-        run('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_VPN_netlab-home.csv', False, threshold)
-        print("\n---PORT FORWARD---")
-        run('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_portForward_netlab-home.csv', False, threshold)
-        print("\n")
 
-#begin program by running local data file
-print("The threshold is set " + str(stdev_num) + " standard deviation(s) away from the mean")
-print("\n---LOCAL---")
-run('~/latency/javascript_latency/data/ESP32_AP_connection.csv', True, 0)
+#runs the tests and analyzes data 
+def run():
+
+    local_data = get_data('~/latency/javascript_latency/data/ESP32_AP_connection.csv')
+    ngrok_data = get_data('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_bridge_netlab_2hrs.csv')
+    vpn_data = get_data('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_VPN_netlab-home.csv')
+    portforward_data = get_data('~/latency/javascript_latency/data/raspberrypi/ESP32_rp_portForward_netlab-home.csv')
+
+    print('\nThe threshold is set ' + str(stdev_num) + ' standard deviations away from the mean')
+    threshold = statistics.mean(local_data) + statistics.pstdev(local_data) * stdev_num
+
+    print('\n---LOCAL---')
+    check_response(local_data, threshold, True)
+    print('\n---NGROK---')
+    check_response(ngrok_data, threshold, False)
+    print('\n---VPN---')
+    check_response(vpn_data, threshold, False)
+    print('\n---PORT FORWARD---')
+    check_response(portforward_data, threshold, False)
+
+run()
