@@ -47,9 +47,7 @@ def find_accuracy(response, LOCAL):
             #if response is false it is remote
             remote += 1
 
-    print(local)
-    print(remote)
-    #retrun accuracy 
+    #return accuracy 
     if LOCAL is True:
         #if local return percentage of local responses
         return local/len(response)
@@ -57,6 +55,7 @@ def find_accuracy(response, LOCAL):
         #if remote return precentage of remote responses
         return remote/len(response)
 
+#return list of data from csv file
 def get_data(file_path):
     data_list = []
     df = pd.read_csv(file_path)
@@ -66,6 +65,7 @@ def get_data(file_path):
     
     return data_list
 
+#check if the responses are accurate
 def check_response(data, threshold, local):
     min_response = []
     avg_response = []
