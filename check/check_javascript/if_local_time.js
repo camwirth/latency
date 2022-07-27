@@ -12,21 +12,15 @@ var options = {
 }
 
 function load_image(LOCAL) {
-    //var img = document.createElement('img');
     if(LOCAL) {
         document.getElementById('local').innerHTML = 'This device is Local';
-        //img.src = 'file:///home/camillewirthlin/latency/javascript_latency/check/thumbsUp.png';
-        //document.getElementById('IMAGE').appendChild(img);
     } else {
         document.getElementById('local').innerHTML = 'This device is not Local';
-        //img.src = 'file:///home/camillewirthlin/latency/javascript_latency/check/thumbsDown.png';
-        //document.getElementById('IMAGE').appendChild(img);
     }
 }
 
 function check_local() {
     document.getElementById('local').innerHTML = '';
-    //document.getElementById('IMAGE').innerHTML = '';
 
     start = new Date().getTime();
     endTime = start + 10000;
@@ -41,12 +35,12 @@ function check_local() {
 
         if(now < endTime && !LOCAL) {
             begin = new Date().getTime();
-            const response = await fetch(URLtobepinged, options);
+            await fetch(URLtobepinged, options);
             end = new Date().getTime();
 
             latency = end - begin;
 
-            if(latency < threshold) {
+            if(latency <= threshold) {
                 LOCAL = true;
                 console.log('reached!')
             } else {
@@ -56,7 +50,7 @@ function check_local() {
                 }, 500)
             }
         } else {
-            var img = document.createElement('img');
+
             if(LOCAL) {
                 document.getElementById('local').innerHTML = 'This device is Local';
             } else {
