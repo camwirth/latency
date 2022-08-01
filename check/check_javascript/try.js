@@ -1,5 +1,6 @@
 var run 
-var URLtobepinged = "http://76.27.100.138/piapp/"
+// var URLtobepinged = "http://76.27.100.138/piapp/"
+var URLtobepinged= "https://192.168.4.1"
 threshold = 22
 
 function run() {

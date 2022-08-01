@@ -46,6 +46,7 @@ function get_latency() {
             } else {
                 begin = new Date().getTime()
                 const response = await fetch(URLtobepinged, options)
+                // print(response)
                 end = new Date().getTime()
 
                 latency = end - begin
