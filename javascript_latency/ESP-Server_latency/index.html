@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content=
+            "with=device-width, initial-scale=1.0">
+        <script language="JavaScript">
+            latencyDataStr = "";
+            var serverURL = "http://192.168.0.118/";
+            var run;
+            var latencyData = [];
+            var i = 0;
+            const myHeaders = new Headers({
+            'Content-Type': 'application/json',
+            })
+
+            function stop(latencyData) {
+            //find a way to push up a json object to the server
+                var options = {
+                    method: "POST", 
+                    mode: "no-cors", 
+                    headers: myHeaders,
+                    body: JSON.stringify(latencyData)
+                }
+
+                pushData().catch(error => {s
+
+                })
+                async function pushData() {
+                    await fetch(serverURL, options)
+                }
+            }
+
+            function getRunTime(form) {
+                var runtime = form.elements['runtime'];
+                console.log(runtime);
+                endTime = Date().getTime() + runtime*1000*60;
+                console.log(endTime);
+                getServerLatency(endTime);
+            }
+
+            function getServerLatency(runtime){
+                console.log("getting there")
+                var options = {
+                    method: "GET",
+                    cache: "no-cache",
+                    headers: myHeaders,
+                    mode: "no-cors",
+                }
+
+                getLatency().catch(error => {
+
+                })
+                async function getLatency() {
+                    current_time = new Date().getTime();
+                    if(run == true) {
+                        if(current_time >= runtime) {
+                            stop(latencyData);
+                        }
+                        else {
+                            begin = new Date().getTime();
+                            await fetch(serverURL, options);
+                            end = new Date().getTime();
+                            latency = end - begin;
+                            latencyData[i] = latency;
+
+                            setTimeout(() => {
+                                getLatency();
+                            }, 500)
+                        }
+                        i++;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Collect Latency to Server and Send Data</h1>
+        <h3>Submit the time you would like to collect data in minutes</h3>
+        <form name="getRunTime" action="#">
+            <label for="runtime">Enter Time: </label><input type="number" name="runtime">
+            <input type="button" name="submit" value="begin" onclick="getRunTime(this.form);">
+        </form>
+        <h5>Latency Measurement: </h5>
+        <p id="latency"></p>
+        <h5>Time left to run (in Minutes): </h5>
+        <p id="timeleft"></p>
+    </body>
+</html>

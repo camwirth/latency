@@ -2,7 +2,7 @@
 var save;
 latencyDataStr = "";
 
-var URLtobepinged = "https://dec1-76-27-100-138.ngrok.io/piapp/";
+var URLtobepinged = "http://76.27.100.138/piapp/";
 var run;
 var latencyData = [];
 var i = 0;
@@ -70,8 +70,11 @@ function pingURL(){
     }
 
     //catch error from the fetch command
+    begin = new Date().getTime();
     getPing().catch(error => {
+        end = new Date().getTime()
         console.log('error!');
+        latency = end - begin
         document.getElementById("latency").innerHTML = latency
     })
 

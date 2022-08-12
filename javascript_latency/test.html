@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content=
+            "with=device-width, initial-scale=1.0">
+        <script language="JavaScript">
+            var serverURL = "https://www.et.byu.edu/~kchristm/latency/check/check_javascript/check.html";
+            const myHeaders = new Headers({
+                'Content-Type': 'application/json'
+            })
+
+            function begin(form) {
+                var runtime = parseInt(form.elements["runtime"].value);
+                startTime = new Date().getTime();
+                endTime = startTime + runtime*60000;
+                getServerLatency(endTime);
+            }
+
+            function stop(latencyData) {
+                myObj = {"latency": latencyData}
+                var JsonForm = JSON.stringify(myObj);
+                console.log(JsonForm)
+                var options = {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: myHeaders,
+                    body: JSON.stringify(JsonForm)
+                };
+                pushData().catch(error=>{
+                    console.log('Error sending data to server')
+                })
+                async function pushData(){
+                    await fetch(serverURL, options)
+                }
+            }
+            function getServerLatency(endtime) {
+                var options = {
+                    method: "GET",
+                    cache: "no-cache",
+                    headers: myHeaders,
+                    mode: "no-cors",
+                };
+                latencyData = []
+
+                async function getLatency() {
+                    begin_latency = new Date().getTime();
+                    timeleft = (endtime - begin_latency)/60000;
+                    if(begin_latency >= endtime) {
+                        document.getElementById("timeleft").innerHTML = "DONE"
+                        stop(latencyData)
+                    } else {
+                        document.getElementById("timeleft").innerHTML = timeleft.toFixed(2)
+                        one = new Date().getTime();
+                        console.log('one');
+                        console.log(one)
+                        let response = await fetch(serverURL, options);
+                        two = new Date().getTime();
+                        console.log("latency")
+                        console.log(two - one)
+                        console.log('two');
+                        console.log(two)
+                        let response2 = await fetch(serverURL, options);
+                        three = new Date().getTime();
+                        console.log("latency")
+                        console.log(three- two)
+                        console.log('three');
+                        console.log(three)
+                        let response3 = await fetch(serverURL, options);
+                        four = new Date().getTime();
+                        console.log("latency")
+                        console.log(four - three)
+                        console.log('four');
+                        console.log(four)
+                        let response4 = await fetch(serverURL, options);        
+                        end = new Date().getTime();
+                        console.log("latency")
+                        console.log(end - four)
+                        console.log(end)
+                        latency = end - begin_latency;
+                        latencyData.push(latency);
+                        document.getElementById("latency").innerHTML = latency;
+
+                        console.log(latencyData);
+                        setTimeout(() => {
+                            getLatency()
+                        }, 500);
+                    }
+                }
+                getLatency().catch(error=> {
+                    console.log('Error getting latency');
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Collect Latencies to the Server</h1>
+        <h3>Submit the time you would like to collect data in minutes</h3>
+        <form name="getTime" action="#">
+            <label for="runtime">Enter Run Time: </label><input type="number" name="runtime">
+            <input type="button" name="submit" value="begin" onclick="begin(this.form);">
+        </form>
+        <h5>Latency Measurement: </h5>
+        <p id="latency"></p>
+        <h5>Time Left to Run (in Minutes): </h5>
+        <p id="timeleft"></p>
+    </body>
+</html>

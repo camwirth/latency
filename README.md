@@ -15,6 +15,10 @@ javascript_latency:
 - index.js: javascript program that works with html program to send a request
     and record time to get a response. Downloads data when time is completed 
     or when stop is pressed.
+- error.js: an attempt to measure the latency through the error rather 
+    than getting an actual response from device
+- ESP-Server_latency: programs to collect data from the ESP32 to the server
+    (pretty much the same as the others, just uses a form)
 
 graphs:
 - ESP32: collection of graphs presenting latency measurements of the ESP32
@@ -35,20 +39,8 @@ check:
 - check.py: analyzes latency data collected using various methods and compares
     to find threshold
 
---Notes--
+websockets
+- tried to create a websocket server that could measure the latency. I never 
+    really got it to work... these are just my attempts, but Chris has the much better
+    and actually working version
 
-Remote Access to ESP32 Using Raspberry Pi:
-- create Apache server 
-- run python flask behind Apache server
-    - https://www.easyprogramming.net/raspberrypi/pi_flask_apache.php
-    - use requests to GET ESP32 private ip address
-- find a method to allow access to Apache server outside of local network
-    (I tried 3 different methods for this)
-    - VPN: create a wireGuard VPN by using raspberry pi
-        - used DHCP reservation, Google as DNS provider, and No-ip to 
-            create dynamic DNS
-        - https://pimylifeup.com/raspberry-pi-wireguard/
-    - NGROK: cross-platform app that makes locally-hosted web server appear to
-        hosted on subdomain of ngrok.com
-        - https://ngrok.com/
-    - Port Forwarding: allow port forwarding and direct to raspberry pi server 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Websocket Latency</title>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" 
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" 
+            crossorigin="anonymous"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+        <!-- <script src="/jquery-3.6.0.min.js"></script> -->
+        <!-- <script src="rd.js"></script> -->
+        <script>
+            $(document).ready(function() {
+
+                var socket = io.connect('http://127.0.0.1:5000');
+
+                socket.on("connect", () => {
+                    console.log(socket.id);
+                })
+
+                $('#start_ping').on('click', function() {
+                    console.log('Send request to begin check');
+                    socket.emit('begin_ping', true);
+                })
+
+                socket.on('ping', function(msg){
+                    console.log('got somewhere')
+                    alert(msg);
+                    socket.emit('respond', 'response')
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <h1>CHECKING LATENCY</h1>
+        <button id="start_ping">Start</button>
+    </body>
+</html>
